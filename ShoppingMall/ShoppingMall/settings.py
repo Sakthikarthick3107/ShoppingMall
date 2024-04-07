@@ -9,7 +9,8 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-
+import os
+import dj_database_url
 from pathlib import Path
 from datetime import timedelta
 
@@ -144,14 +145,15 @@ WSGI_APPLICATION = 'ShoppingMall.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'ShoppingMall',
-        'USER' : 'postgres',
-        'PASSWORD' : 'sakthi',
-        'HOST' : 'localhost',
-        'PORT' : '5432'
-    }
+    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL')),
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'ShoppingMall',
+    #     'USER' : 'postgres',
+    #     'PASSWORD' : 'sakthi',
+    #     'HOST' : 'localhost',
+    #     'PORT' : '5432'
+    # }
 }
 
 
